@@ -14,7 +14,7 @@ cache:
 env:
   global:
     - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-    - BINARYBUILDER_AUTOMATIC_APPLE=false
+    - BINARYBUILDER_AUTOMATIC_APPLE=true
 sudo: required
 
 # Before anything else, get the latest versions of things
@@ -23,4 +23,17 @@ before_script:
 
 script:
   - julia build_tarballs.jl
+
+deploy:
+    provider: releases
+    api_key:
+        # Note; this api_key is only valid for RelationalAI-oss/libpg_query_binary_builder; you need
+        # to make your own: https://docs.travis-ci.com/user/deployment/releases/
+        secure: jXmfnU9IXX2OHrRZjjzY1vApaY0x11KUwfDHZ3nL6YIgEU+G0FvkT7Oh3PkPChS+0Y3MyU5trx96eNj/3ZrV35ZcO1BVU/dK6qOJV3McK9RLQXIdDhKGJ4MO4uNdMBPeyd2sW2MR51dj7Ttbn/iI/0Y4GHsbgbxOmzatNfkyz3HoDAUVHI6tlw/fTsGYW6MFmOQebFnigPeicMVPKlFTnWr19UP5/tsvLheFAP0ibCmmn4s8P2w+OCwjMxOH7bsbVrMIZ2E+Tbd0yHdMueYvBJ/UX2ZlhXUfbPEV16WnccIpBS4HxCLSa4pm4ejpkQNGLkRERN35CT7R8I5zLxm1RuvvT5FjGpA/qa9/PHJDVWjHJOyaiwSAl3nSVhodEOXc/UJ5nz1HIhjCTycguF2ipEA+1Q3uDvijU28pt0KK8HzRuRyhwQl5/ZnJeF36G8RfVSForimyRD38ZpMxrzA+kpuJVdX+XFRp4J1Md9TcUH5fofbVAqPlFIOXK3qlHb9IHvOt2pqpLZno+TJKwGw/u7jM5vBOAuCRDEGt7seffihEd/TsaCUZlDV2kxBu2wsltTqxrMowedoqbZSBM7EdepVcKTJZ+0aax91SmvHoX6ks9E1JAXLpvRQ2vISfIsOvQB30gjpEWQesNj5r90x1Q+Phm7Bybzb/3MylMHKDqkc=
+    file_glob: true
+    file: products/*
+    skip_cleanup: true
+    on:
+        repo: RelationalAI-oss/libpg_query_binary_builder
+        tags: true
 
