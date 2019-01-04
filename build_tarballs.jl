@@ -17,7 +17,8 @@ script = raw"""
 cd $WORKSPACE/srcdir
 cd libpg_query/
 make build
-cp libpg_query.* $prefix/
+mkdir -p $prefix/lib
+cp libpg_query.* $prefix/lib/
 
 """
 
