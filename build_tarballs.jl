@@ -3,7 +3,7 @@
 using BinaryBuilder
 
 name = "libpg_query"
-version = v"0.0.2"
+version = v"0.0.3"
 
 # Collection of sources required to build libpg_query
 sources = [
