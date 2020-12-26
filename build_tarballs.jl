@@ -7,9 +7,10 @@ version = v"0.0.4"
 
 # Collection of sources required to build libpg_query
 sources = [
-    "https://github.com/relationalai-oss/libpg_query.git" =>
-    "45dbfc5baf079c8be423b2e1fa21147181ecbbf2",
-
+    GitSource(
+        "https://github.com/relationalai-oss/libpg_query.git",
+        "97907ad5630980b33cda4197b083963884997124",
+    ),
 ]
 
 # Bash recipe for building across all platforms
@@ -33,15 +34,14 @@ platforms = [
 ]
 
 # The products that we will ensure are always built
-products(prefix) = [
-    LibraryProduct(prefix, "libpg_query", :libpg_query)
+products = [
+    LibraryProduct("libpg_query", :libpg_query),
 ]
 
 # Dependencies that must be installed before this package can be built
 dependencies = [
-    
+
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
 build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
-
