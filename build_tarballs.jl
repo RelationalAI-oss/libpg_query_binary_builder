@@ -3,13 +3,13 @@
 using BinaryBuilder
 
 name = "libpg_query"
-version = v"0.0.4"
+version = v"0.0.5"
 
 # Collection of sources required to build libpg_query
 sources = [
     GitSource(
         "https://github.com/relationalai-oss/libpg_query.git",
-        "97907ad5630980b33cda4197b083963884997124",
+        "bc18e37f079e7cfecee297b36c01e37a7110c4ba",
     ),
 ]
 
@@ -35,7 +35,7 @@ platforms = [
 
 # The products that we will ensure are always built
 products = [
-    LibraryProduct("libpg_query", :libpg_query)
+    LibraryProduct("libpg_query", :libpg_query),
 ]
 
 # Dependencies that must be installed before this package can be built
