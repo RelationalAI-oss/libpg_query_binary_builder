@@ -19,7 +19,10 @@ jobs:
       - name: Build Project
         run: julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; pkg"add SHA"; Pkg.build()'
       - name: Build Release Products
-        run: julia build_tarballs.jl
+        run: |
+          echo "BINARYBUILDER_DOWNLOADS_CACHE=downloads" >> $GITHUB_ENV
+          echo "BINARYBUILDER_AUTOMATIC_APPLE=true" >> $GITHUB_ENV
+          julia build_tarballs.jl
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
