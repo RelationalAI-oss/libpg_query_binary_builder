@@ -35,7 +35,7 @@ platforms = [
 
 # The products that we will ensure are always built
 products = [
-    LibraryProduct("libpg_query", :libpg_query),
+    LibraryProduct("libpg_query", :libpg_query)
 ]
 
 # Dependencies that must be installed before this package can be built
