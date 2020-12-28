@@ -4,13 +4,13 @@ using BinaryBuilder
 using SHA
 
 name = "libpg_query"
-version = v"0.0.5"
+version = v"0.0.6"
 
 # Collection of sources required to build libpg_query
 sources = [
     GitSource(
         "https://github.com/relationalai-oss/libpg_query.git",
-        "bc18e37f079e7cfecee297b36c01e37a7110c4ba",
+        "c18afd7395a19a35043e1af94ac01360b8730106",
     ),
 ]
 
