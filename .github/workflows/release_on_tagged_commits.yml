@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build Project
-        run: julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
+        run: julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; pkg"add SHA"; Pkg.build()'
       - name: Build Release Products
         run: julia build_tarballs.jl
       - name: Create Release
