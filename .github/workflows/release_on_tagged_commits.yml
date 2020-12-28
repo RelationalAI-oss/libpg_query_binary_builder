@@ -16,6 +16,9 @@ jobs:
           version: 1.5.3
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Build Project
         run: julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; pkg"add SHA"; Pkg.build()'
       - name: Build Release Products
@@ -29,14 +32,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: Created a new release ${{ github.ref }}.
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          body: Created a new release ${{ steps.get_version.outputs.VERSION }}.
           draft: false
           prerelease: false
       - name: Upload Release Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag_name="${{ github.ref }}"
+          tag_name="${{ steps.get_version.outputs.VERSION }}"
           hub release edit $(find ./products -type f -name ".*" -printf "-a %p ") -m "" "$tag_name"
