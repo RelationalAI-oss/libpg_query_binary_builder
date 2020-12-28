@@ -39,4 +39,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           tag_name="${{ github.ref }}"
-          hub release edit $(find ./PRODUCTS -type f -name ".*" -printf "-a %p ") -m "" "$tag_name"
+          hub release edit $(find ./products -type f -name ".*" -printf "-a %p ") -m "" "$tag_name"
